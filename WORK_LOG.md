@@ -1,9 +1,9 @@
 Name: YOUR NAME HERE
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date        |    Time     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Update |
+|:------------|:-----------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| September 9 | 5:50 - 6:20 |                            Thinking about how to do this problem set and trying to understand it by going through test, First I thought about finding out which cities have a city in common so I can build a hospital in the city they all have in common and connect it with highways, maybe this problem set involves some sort of sorting algorithm, also somehow checking if it might be cheapter i build a hospital in every city, additionally maybe we can some how seperate the cities to those that are connected and those that arent (like the example problem) |
+| September 9 | 6:20 - 6:50 | I started writing a little bit of code, however I soon realized that I really didn't know how to start. However, something I came up with was to at the end once we figure out the cost including the highways, at the end we would check if it is cheaper to build the hospitals in each city. Additionally, I wrote down some of the problems on a piece of paper to see how would I approach this but I came up with nothing. I am clueless on how to start doing this problem, however, I do still think my idea of finding the most common city might be a good start. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
