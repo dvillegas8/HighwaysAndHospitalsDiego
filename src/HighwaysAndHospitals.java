@@ -19,7 +19,6 @@ public class HighwaysAndHospitals {
         int cityX = 0;
         int cityY = 0;
         int temp = 0;
-        int cityB = 0;
         // Array of cities where index = node and value = root
         int edgesAndRoots[] = new int[n + 1];
         // For each edge
@@ -65,14 +64,13 @@ public class HighwaysAndHospitals {
             }
         }
         int counter = 0;
-        // Counts sub-graphs by counting which nodes are equal to themselves
+        // Finds number of clusters
         for(int i = 1; i < edgesAndRoots.length; i++){
-            //System.out.println("node: " + i + ", root: " + edgesAndRoots[i]);
             if(edgesAndRoots[i] <= 0){
                 counter++;
             }
         }
-        //System.out.println(counter);
+        // Formula to count total cost
         minCost = ((long) counter * hospitalCost) + ((long) highwayCost * (n - counter));
         return minCost;
     }
