@@ -22,7 +22,7 @@ public class HighwaysAndHospitals {
         int leftCity = 0;
         int rightCity = 0;
         // Array of cities where index = node and value = root
-        int edgesAndRoots[] = new int[n + 1];
+        int[] edgesAndRoots = new int[n + 1];
         // For each edge
         for(int i = 0; i < cities.length; i++){
             // Get left city
