@@ -16,50 +16,52 @@ public class HighwaysAndHospitals {
             return (long) hospitalCost * n;
         }
         long minCost = 0;
-        int cityX = 0;
-        int cityY = 0;
-        int temp = 0;
+        int leftTopRoot = 0;
+        int rightTopRoot = 0;
+        int originalRoot = 0;
+        // Intermediate variables
         // Array of cities where index = node and value = root
         int edgesAndRoots[] = new int[n + 1];
         // For each edge
         for(int i = 0; i < cities.length; i++){
             // Get left city
-            cityX = cities[i][0];
+            leftTopRoot = cities[i][0];
             // Find top root/city of left city
-            while(edgesAndRoots[cityX] > 0){
-                cityX = edgesAndRoots[cityX];
+            while(edgesAndRoots[leftTopRoot] > 0){
+                leftTopRoot = edgesAndRoots[leftTopRoot];
             }
             // Get right city
-            cityY = cities[i][1];
+            rightTopRoot = cities[i][1];
             // Find top root/city of right city
-            while(edgesAndRoots[cityY] > 0){
-                cityY = edgesAndRoots[cityY];
+            while(edgesAndRoots[rightTopRoot] > 0){
+                rightTopRoot = edgesAndRoots[rightTopRoot];
             }
-            // Path compression
+            // Path compression for left city
             while(edgesAndRoots[cities[i][0]] > 0){
-                temp = edgesAndRoots[cities[i][0]];
-                edgesAndRoots[cities[i][0]] = cityX;
-                cities[i][0] = temp;
+                originalRoot = edgesAndRoots[cities[i][0]];
+                edgesAndRoots[cities[i][0]] = leftTopRoot;
+                cities[i][0] = originalRoot;
             }
+            // Path compression for right city
             while(edgesAndRoots[cities[i][1]] > 0){
-                temp = edgesAndRoots[cities[i][1]];
-                edgesAndRoots[cities[i][1]] = cityY;
-                cities[i][1] = temp;
+                originalRoot = edgesAndRoots[cities[i][1]];
+                edgesAndRoots[cities[i][1]] = rightTopRoot;
+                cities[i][1] = originalRoot;
             }
-            // If cities are not the same, do weight balancing
-            if(cityX != cityY){
-                // Weight balancing
-                if(edgesAndRoots[cityY] < edgesAndRoots[cityX]){
+            // If roots/cities are not the same, do weight balancing
+            if(leftTopRoot != rightTopRoot){
+                // Weight balancing, if right city's order is bigger
+                if(edgesAndRoots[rightTopRoot] < edgesAndRoots[leftTopRoot]){
                     // Update length of right city
-                    edgesAndRoots[cityY] = edgesAndRoots[cityY] + edgesAndRoots[cityX] - 1;
-                    // Set the left city's root at the right city
-                    edgesAndRoots[cityX] = cityY;
+                    edgesAndRoots[rightTopRoot] = edgesAndRoots[rightTopRoot] + edgesAndRoots[leftTopRoot] - 1;
+                    // Set the left city's root as the right city
+                    edgesAndRoots[leftTopRoot] = rightTopRoot;
                 }
                 else{
                     // Update length of left city
-                    edgesAndRoots[cityX] = edgesAndRoots[cityX] + edgesAndRoots[cityY] - 1;
-                    // Set the right city's root at the left city
-                    edgesAndRoots[cityY] = cityX;
+                    edgesAndRoots[leftTopRoot] = edgesAndRoots[leftTopRoot] + edgesAndRoots[rightTopRoot] - 1;
+                    // Set the right city's root as the left city
+                    edgesAndRoots[rightTopRoot] = leftTopRoot;
                 }
             }
         }
