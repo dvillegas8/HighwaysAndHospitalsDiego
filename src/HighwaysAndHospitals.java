@@ -19,34 +19,37 @@ public class HighwaysAndHospitals {
         int leftTopRoot = 0;
         int rightTopRoot = 0;
         int originalRoot = 0;
-        // Intermediate variables
+        int leftCity = 0;
+        int rightCity = 0;
         // Array of cities where index = node and value = root
         int edgesAndRoots[] = new int[n + 1];
         // For each edge
         for(int i = 0; i < cities.length; i++){
             // Get left city
-            leftTopRoot = cities[i][0];
+            leftCity = cities[i][0];
+            leftTopRoot = leftCity;
             // Find top root/city of left city
             while(edgesAndRoots[leftTopRoot] > 0){
                 leftTopRoot = edgesAndRoots[leftTopRoot];
             }
             // Get right city
-            rightTopRoot = cities[i][1];
+            rightCity = cities[i][1];
+            rightTopRoot = rightCity;
             // Find top root/city of right city
             while(edgesAndRoots[rightTopRoot] > 0){
                 rightTopRoot = edgesAndRoots[rightTopRoot];
             }
             // Path compression for left city
-            while(edgesAndRoots[cities[i][0]] > 0){
-                originalRoot = edgesAndRoots[cities[i][0]];
-                edgesAndRoots[cities[i][0]] = leftTopRoot;
-                cities[i][0] = originalRoot;
+            while(edgesAndRoots[leftCity] > 0){
+                originalRoot = edgesAndRoots[leftCity];
+                edgesAndRoots[leftCity] = leftTopRoot;
+                leftCity = originalRoot;
             }
             // Path compression for right city
-            while(edgesAndRoots[cities[i][1]] > 0){
-                originalRoot = edgesAndRoots[cities[i][1]];
-                edgesAndRoots[cities[i][1]] = rightTopRoot;
-                cities[i][1] = originalRoot;
+            while(edgesAndRoots[rightCity] > 0){
+                originalRoot = edgesAndRoots[rightCity];
+                edgesAndRoots[rightCity] = rightTopRoot;
+                rightCity = originalRoot;
             }
             // If roots/cities are not the same, do weight balancing
             if(leftTopRoot != rightTopRoot){
